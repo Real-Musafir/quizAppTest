@@ -57,16 +57,23 @@ function App() {
             .map((item, index) => (
               <TouchableOpacity
                 onPress={() => setCurrentPosition(index + 4)}
+                style={[
+                  currentPosition === index + 4
+                    ? styles.countTouchPosition
+                    : null,
+                ]}
                 key={index}>
-                <LinearGradient
-                  colors={
-                    currentPosition === index + 4
-                      ? ['#0098DD', '#00559E', '#0098DD']
-                      : ['#ffffff', '#999999', '#ffffff']
-                  }
-                  style={styles.countNumber}>
-                  <Text style={styles.countDigit}>{index + 4}</Text>
-                </LinearGradient>
+                <View style={styles.countView}>
+                  <LinearGradient
+                    colors={
+                      currentPosition === index + 4
+                        ? ['#0098DD', '#00559E', '#0098DD']
+                        : ['#ffffff', '#999999', '#ffffff']
+                    }
+                    style={styles.countNumber}>
+                    <Text style={styles.countDigit}>{index + 4}</Text>
+                  </LinearGradient>
+                </View>
               </TouchableOpacity>
             ))}
         </View>
@@ -112,7 +119,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     borderRadius: wp('6%'),
-    paddingHorizontal: wp('3%'),
+    paddingHorizontal: wp('5%'),
   },
   bar: {
     height: hp('.4%'),
@@ -132,11 +139,20 @@ const styles = StyleSheet.create({
   },
   countContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    borderBottomWidth: hp('.2%'),
+    borderBottomColor: '#999999',
   },
   countDigit: {
     fontSize: wp('3%'),
     color: 'white',
+  },
+  countTouchPosition: {
+    borderBottomWidth: hp('.2%'),
+    borderColor: '#0098DD',
+  },
+  countView: {
+    marginBottom: hp('1%'),
   },
 });
 
