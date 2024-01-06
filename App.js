@@ -22,6 +22,21 @@ import {
 
 function App() {
   const [currentPosition, setCurrentPosition] = useState(10);
+  const [selectAnswerNumber, setSelectAnswerNumber] = useState(999999);
+  const questions = [
+    'User interface and User Experience',
+    'User interface and User Experience',
+    'User interface and User Experience',
+    'User interface and User Experience',
+    'User interface and User Experience',
+  ];
+
+  function numberToLetter(number) {
+    // Assuming input number starts from 0
+    const asciiCode = 'A'.charCodeAt(0) + number;
+    return String.fromCharCode(asciiCode);
+  }
+
   return (
     <LinearGradient
       colors={['#0088DD', '#00559E', '#004080']}
@@ -54,7 +69,7 @@ function App() {
         <View style={styles.countContainer}>
           {Array(7)
             .fill()
-            .map((item, index) => (
+            .map((_, index) => (
               <TouchableOpacity
                 onPress={() => setCurrentPosition(index + 4)}
                 style={[
@@ -68,7 +83,7 @@ function App() {
                     colors={
                       currentPosition === index + 4
                         ? ['#0098DD', '#00559E', '#0098DD']
-                        : ['#ffffff', '#999999', '#ffffff']
+                        : ['#CCCCCC', '#CCCCCC', '#CCCCCC']
                     }
                     style={styles.countNumber}>
                     <Text style={styles.countDigit}>{index + 4}</Text>
@@ -77,6 +92,33 @@ function App() {
               </TouchableOpacity>
             ))}
         </View>
+
+        <Text style={styles.questionText}>
+          What is the meaning of UI UX Design?
+        </Text>
+
+        {questions.map((item, index) => (
+          <TouchableOpacity
+            onPress={() => setSelectAnswerNumber(index)}
+            style={styles.optionChooseView}>
+            <View
+              style={[
+                styles.alphavetView,
+                selectAnswerNumber === index
+                  ? {backgroundColor: '#0098DD'}
+                  : null,
+              ]}>
+              <Text>{numberToLetter(index)}</Text>
+            </View>
+            <Text
+              style={[
+                styles.questionOptionText,
+                selectAnswerNumber === index ? {color: '#0098DD'} : null,
+              ]}>
+              {item}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </LinearGradient>
   );
@@ -98,13 +140,15 @@ const styles = StyleSheet.create({
   },
   headerRight: {
     height: hp('2.4%'),
-    width: wp('16%'),
+    width: wp('17%'),
     backgroundColor: 'white',
     borderRadius: wp('3%'),
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    paddingHorizontal: wp('1.3%'),
   },
+
   clockDigit: {
     fontSize: wp('3%'),
     color: '#0098DD',
@@ -142,6 +186,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomWidth: hp('.2%'),
     borderBottomColor: '#999999',
+    marginBottom: hp('1.5%'),
   },
   countDigit: {
     fontSize: wp('3%'),
@@ -153,6 +198,27 @@ const styles = StyleSheet.create({
   },
   countView: {
     marginBottom: hp('1%'),
+  },
+  questionText: {
+    fontSize: hp('1.8%'),
+    marginBottom: hp('1.5%'),
+  },
+  questionOptionText: {
+    fontSize: hp('1.6%'),
+  },
+  optionChooseView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: hp('2%'),
+  },
+  alphavetView: {
+    height: hp('3.4%'),
+    width: hp('3.4%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: hp('2%'),
+    backgroundColor: '#DDDDDD',
+    marginRight: wp('2%'),
   },
 });
 
