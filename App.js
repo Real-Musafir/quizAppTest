@@ -17,7 +17,7 @@ import {
 function App() {
   return (
     <LinearGradient
-      colors={['#0098DD', '#00559E', '#004080']}
+      colors={['#0088DD', '#00559E', '#004080']}
       style={styles.container}>
       <SafeAreaView>
         <View style={styles.header}>
@@ -41,6 +41,9 @@ function App() {
           </View>
         </View>
       </SafeAreaView>
+      <View style={styles.bodyPart}>
+        <View style={styles.bar} />
+      </View>
     </LinearGradient>
   );
 }
@@ -49,16 +52,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // Add additional styles as needed
-  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: wp('4%'),
+    marginBottom: hp('3%'),
   },
   headerText: {
     color: 'white',
@@ -82,6 +80,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: wp('40%'),
     alignItems: 'center',
+  },
+  bodyPart: {
+    flex: 1,
+    backgroundColor: 'white',
+    borderRadius: wp('6%'),
+  },
+  bar: {
+    height: hp('.4%'),
+    backgroundColor: '#0098DD',
+    width: wp('10%'),
+    alignSelf: 'center',
+    marginVertical: hp('1%'),
+    borderRadius: wp('1%'),
   },
 });
 
