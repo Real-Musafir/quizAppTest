@@ -6,16 +6,13 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 function App() {
   return (
@@ -32,7 +29,13 @@ function App() {
           />
           <Text style={styles.headerText}>UI UX Design Quiz</Text>
           <View style={styles.headerRight}>
-            <Icon name={'clock'} type={'feather'} size={18} color={'white'} />
+            <Icon
+              name={'clock'}
+              type={'feather'}
+              size={wp('3%')}
+              color={'#0098DD'}
+            />
+            <Text style={styles.clockDigit}>16:15</Text>
           </View>
         </View>
       </SafeAreaView>
@@ -56,6 +59,19 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: 'white',
+  },
+  headerRight: {
+    height: hp('2.4%'),
+    width: wp('18%'),
+    backgroundColor: 'white',
+    borderRadius: wp('3%'),
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  clockDigit: {
+    fontSize: wp('3%'),
+    color: '#0098DD',
   },
 });
 
