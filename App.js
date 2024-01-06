@@ -21,13 +21,15 @@ function App() {
       style={styles.container}>
       <SafeAreaView>
         <View style={styles.header}>
-          <Icon
-            name={'arrowleft'}
-            type={'antdesign'}
-            size={18}
-            color={'white'}
-          />
-          <Text style={styles.headerText}>UI UX Design Quiz</Text>
+          <View style={styles.headerLeft}>
+            <Icon
+              name={'arrowleft'}
+              type={'antdesign'}
+              size={18}
+              color={'white'}
+            />
+            <Text style={styles.headerText}>UI UX Design Quiz</Text>
+          </View>
           <View style={styles.headerRight}>
             <Icon
               name={'clock'}
@@ -55,14 +57,16 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    paddingHorizontal: wp('4%'),
   },
   headerText: {
     color: 'white',
+    fontSize: wp('3.5%'),
   },
   headerRight: {
     height: hp('2.4%'),
-    width: wp('18%'),
+    width: wp('16%'),
     backgroundColor: 'white',
     borderRadius: wp('3%'),
     flexDirection: 'row',
@@ -72,6 +76,12 @@ const styles = StyleSheet.create({
   clockDigit: {
     fontSize: wp('3%'),
     color: '#0098DD',
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: wp('40%'),
+    alignItems: 'center',
   },
 });
 
