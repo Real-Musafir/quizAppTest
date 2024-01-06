@@ -5,8 +5,14 @@
  * @format
  */
 
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import {
@@ -15,6 +21,7 @@ import {
 } from 'react-native-responsive-screen';
 
 function App() {
+  const [currentPosition, setCurrentPosition] = useState(10);
   return (
     <LinearGradient
       colors={['#0088DD', '#00559E', '#004080']}
@@ -48,13 +55,19 @@ function App() {
           {Array(7)
             .fill()
             .map((item, index) => (
-              <View key={index}>
+              <TouchableOpacity
+                onPress={() => setCurrentPosition(index + 4)}
+                key={index}>
                 <LinearGradient
-                  colors={['#0098DD', '#00559E', '#0098DD']}
+                  colors={
+                    currentPosition === index + 4
+                      ? ['#0098DD', '#00559E', '#0098DD']
+                      : ['#ffffff', '#999999', '#ffffff']
+                  }
                   style={styles.countNumber}>
-                  <Text>{index + 4}</Text>
+                  <Text style={styles.countDigit}>{index + 4}</Text>
                 </LinearGradient>
-              </View>
+              </TouchableOpacity>
             ))}
         </View>
       </View>
@@ -120,6 +133,10 @@ const styles = StyleSheet.create({
   countContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  countDigit: {
+    fontSize: wp('3%'),
+    color: 'white',
   },
 });
 
