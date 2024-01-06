@@ -12,10 +12,10 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {Icon} from 'react-native-elements';
 
 function App() {
   return (
@@ -24,7 +24,12 @@ function App() {
       style={styles.container}>
       <SafeAreaView>
         <View style={styles.header}>
-          <Text>Icon</Text>
+          <Icon
+            name={'chevrons-down'}
+            type={'feather'}
+            size={35}
+            color={'white'}
+          />
           <Text>UI UX Design Quiz</Text>
           <View>
             <Text>Clock</Text>
