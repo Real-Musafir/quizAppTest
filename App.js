@@ -25,14 +25,14 @@ function App() {
       <SafeAreaView>
         <View style={styles.header}>
           <Icon
-            name={'chevrons-down'}
-            type={'feather'}
-            size={35}
+            name={'arrowleft'}
+            type={'antdesign'}
+            size={18}
             color={'white'}
           />
-          <Text>UI UX Design Quiz</Text>
-          <View>
-            <Text>Clock</Text>
+          <Text style={styles.headerText}>UI UX Design Quiz</Text>
+          <View style={styles.headerRight}>
+            <Icon name={'clock'} type={'feather'} size={18} color={'white'} />
           </View>
         </View>
       </SafeAreaView>
@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  headerText: {
+    color: 'white',
   },
 });
 
