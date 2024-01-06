@@ -99,6 +99,7 @@ function App() {
 
         {questions.map((item, index) => (
           <TouchableOpacity
+            key={index}
             onPress={() => setSelectAnswerNumber(index)}
             style={styles.optionChooseView}>
             <View
