@@ -43,6 +43,20 @@ function App() {
       </SafeAreaView>
       <View style={styles.bodyPart}>
         <View style={styles.bar} />
+
+        <View style={styles.countContainer}>
+          {Array(7)
+            .fill()
+            .map((item, index) => (
+              <View key={index}>
+                <LinearGradient
+                  colors={['#0098DD', '#00559E', '#0098DD']}
+                  style={styles.countNumber}>
+                  <Text>{index + 4}</Text>
+                </LinearGradient>
+              </View>
+            ))}
+        </View>
       </View>
     </LinearGradient>
   );
@@ -85,14 +99,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     borderRadius: wp('6%'),
+    paddingHorizontal: wp('3%'),
   },
   bar: {
     height: hp('.4%'),
     backgroundColor: '#0098DD',
     width: wp('10%'),
     alignSelf: 'center',
-    marginVertical: hp('1%'),
+    marginVertical: hp('2%'),
     borderRadius: wp('1%'),
+  },
+
+  countNumber: {
+    height: hp('3.4%'),
+    width: hp('3.4%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: hp('2%'),
+  },
+  countContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
 
