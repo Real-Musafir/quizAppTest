@@ -22,7 +22,7 @@ import {
 
 function App() {
   const [currentPosition, setCurrentPosition] = useState(10);
-  const [selectAnswerNumber, setSelectAnswerNumber] = useState(999999);
+  const [selectAnswerNumber, setSelectAnswerNumber] = useState(3);
   const questions = [
     'User interface and User Experience',
     'User interface and User Experience',
@@ -63,63 +63,78 @@ function App() {
           </View>
         </View>
       </SafeAreaView>
-      <View style={styles.bodyPart}>
-        <View style={styles.bar} />
 
-        <View style={styles.countContainer}>
-          {Array(7)
-            .fill()
-            .map((_, index) => (
-              <TouchableOpacity
-                onPress={() => setCurrentPosition(index + 4)}
+      <View style={styles.bodyPart}>
+        <View style={{flex: 0.93}}>
+          <View style={styles.bar} />
+
+          <View style={styles.countContainer}>
+            {Array(7)
+              .fill()
+              .map((_, index) => (
+                <TouchableOpacity
+                  onPress={() => setCurrentPosition(index + 4)}
+                  style={[
+                    currentPosition === index + 4
+                      ? styles.countTouchPosition
+                      : null,
+                  ]}
+                  key={index}>
+                  <View style={styles.countView}>
+                    <LinearGradient
+                      colors={
+                        currentPosition === index + 4
+                          ? ['#0098DD', '#00559E', '#0098DD']
+                          : ['#CCCCCC', '#CCCCCC', '#CCCCCC']
+                      }
+                      style={styles.countNumber}>
+                      <Text style={styles.countDigit}>{index + 4}</Text>
+                    </LinearGradient>
+                  </View>
+                </TouchableOpacity>
+              ))}
+          </View>
+
+          <Text style={styles.questionText}>
+            What is the meaning of UI UX Design?
+          </Text>
+
+          {questions.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => setSelectAnswerNumber(index)}
+              style={styles.optionChooseView}>
+              <View
                 style={[
-                  currentPosition === index + 4
-                    ? styles.countTouchPosition
+                  styles.alphavetView,
+                  selectAnswerNumber === index
+                    ? {backgroundColor: '#0098DD'}
                     : null,
-                ]}
-                key={index}>
-                <View style={styles.countView}>
-                  <LinearGradient
-                    colors={
-                      currentPosition === index + 4
-                        ? ['#0098DD', '#00559E', '#0098DD']
-                        : ['#CCCCCC', '#CCCCCC', '#CCCCCC']
-                    }
-                    style={styles.countNumber}>
-                    <Text style={styles.countDigit}>{index + 4}</Text>
-                  </LinearGradient>
-                </View>
-              </TouchableOpacity>
-            ))}
+                ]}>
+                <Text>{numberToLetter(index)}</Text>
+              </View>
+              <Text
+                style={[
+                  styles.questionOptionText,
+                  selectAnswerNumber === index ? {color: '#0098DD'} : null,
+                ]}>
+                {item}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
 
-        <Text style={styles.questionText}>
-          What is the meaning of UI UX Design?
-        </Text>
-
-        {questions.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => setSelectAnswerNumber(index)}
-            style={styles.optionChooseView}>
-            <View
-              style={[
-                styles.alphavetView,
-                selectAnswerNumber === index
-                  ? {backgroundColor: '#0098DD'}
-                  : null,
-              ]}>
-              <Text>{numberToLetter(index)}</Text>
-            </View>
-            <Text
-              style={[
-                styles.questionOptionText,
-                selectAnswerNumber === index ? {color: '#0098DD'} : null,
-              ]}>
-              {item}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        <View style={styles.bottomView}>
+          <View style={styles.bottomIconCircle}>
+            <Icon name={'left'} type={'antdesign'} size={18} color={'white'} />
+          </View>
+          <View style={styles.quizButtonView}>
+            <Text style={styles.submitQuizText}>Submit Quiz</Text>
+          </View>
+          <View style={[styles.bottomIconCircle, {backgroundColor: '#DDDDDD'}]}>
+            <Icon name={'right'} type={'antdesign'} size={18} color={'white'} />
+          </View>
+        </View>
       </View>
     </LinearGradient>
   );
@@ -220,6 +235,33 @@ const styles = StyleSheet.create({
     borderRadius: hp('2%'),
     backgroundColor: '#DDDDDD',
     marginRight: wp('2%'),
+  },
+  bottomIconCircle: {
+    height: hp('4%'),
+    width: hp('4%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: hp('3%'),
+    backgroundColor: '#0098DD',
+  },
+  submitQuizText: {
+    fontSize: hp('1.5%'),
+    color: '#0098DD',
+  },
+  quizButtonView: {
+    height: hp('4%'),
+    width: wp('30%'),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: hp('.15%'),
+    borderColor: '#0098DD',
+    borderRadius: hp('.5%'),
+  },
+  bottomView: {
+    flexDirection: 'row',
+    width: wp('55%'),
+    justifyContent: 'space-between',
+    alignSelf: 'center',
   },
 });
 
