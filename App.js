@@ -22,7 +22,7 @@ import {
 
 function App() {
   const [currentPosition, setCurrentPosition] = useState(10);
-  const [selectAnswerNumber, setSelectAnswerNumber] = useState(3);
+  const [selectAnswerNumber, setSelectAnswerNumber] = useState(99999);
   const questions = [
     'User interface and User Experience',
     'User interface and User Experience',
